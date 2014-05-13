@@ -1,14 +1,11 @@
 <%= form_for @movie, html: { :class => 'validatable-form', :'data-validate-model' => 'movie', :'data-validation-route' => magic_word.validations_path } do |f| %>
-
   <div class="field">
     <%= f.label :title %><br>
     <%= f.text_field :title, class: 'validatable-input' %>
-    <div class="validation-msg"></div>
   </div>
   <div class="field">
     <%= f.label :description %><br>
     <%= f.text_area :description, class: 'validatable-input' %>
-    <div class="validation-msg"></div>
   </div>
   <div class="field">
     <%= f.label :release_date %><br>
@@ -17,7 +14,6 @@
   <div class="field">
     <%= f.label :rating %><br>
     <%= f.number_field :rating, class: 'validatable-input' %>
-    <div class="validation-msg"></div>
   </div>
   <div class="actions">
     <%= f.submit %>

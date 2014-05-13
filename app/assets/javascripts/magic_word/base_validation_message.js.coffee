@@ -1,5 +1,6 @@
 class window.BaseValidationMessage
   constructor: (@$el) ->
+    @$el.after("<div class='validation-msg'></div>")
     @$messageField = @$el.siblings('.validation-msg')
 
   successMessage: (message = '') ->
