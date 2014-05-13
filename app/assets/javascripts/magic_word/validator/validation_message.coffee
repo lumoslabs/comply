@@ -1,0 +1,1 @@
+class window.ValidationMessage extends BaseValidationMessage
