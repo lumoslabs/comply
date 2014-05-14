@@ -2,7 +2,7 @@ module MagicWord
   class ValidationsController < MagicWord::ApplicationController
     before_filter :require_model, :require_fields
 
-    def show
+    def create
       instance = @model.new(post_params)
       instance.valid?
       render json: {error: instance.errors, success: instance.respond_to?(:valid_messages) ? instance.valid_messages : []}
