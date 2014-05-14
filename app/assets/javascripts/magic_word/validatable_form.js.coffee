@@ -1,8 +1,7 @@
 class window.ValidatableForm
-  constructor: (@$form) ->
+  constructor: (@$form, @validationRoute) ->
     @inputs          = @_inputs()
     @model           = @$form.data('validate-model')
-    @validationRoute = @$form.data('validation-route')
     @$button         = @$form.find('[type=submit]')
     @$button.click @validateInputs
     @$button.attr('disabled', false).removeClass('disabled')
@@ -23,7 +22,7 @@ class window.ValidatableForm
   _allSuccess: (response) -> !_.detect response.error, (e) -> e.length
 
   _inputs: ->
-    _.map @$form.find('.validatable-input[name]'), (input) =>
+    _.map @$form.find('[data-validate][name]'), (input) =>
       new ValidatableInput $(input), this
 
   _isSuccess: (input, response) ->

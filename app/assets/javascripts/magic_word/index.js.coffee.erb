@@ -1,0 +1,5 @@
+#= require_tree .
+
+$ ->
+  route = '<%= MagicWord::Engine.routes.url_helpers.validations_path %>'
+  $('[data-validate-model]').each -> new ValidatableForm $(this), route
