@@ -1,1 +1,1 @@
-class window.ValidationMessage extends BaseValidationMessage
+class MagicWord.ValidationMessage extends MagicWord.BaseValidationMessage

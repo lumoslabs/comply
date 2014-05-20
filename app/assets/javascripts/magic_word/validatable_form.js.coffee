@@ -1,9 +1,9 @@
-class window.ValidatableForm
+class MagicWord.ValidatableForm
   constructor: (@$form) ->
     @inputs          = @_inputs()
     @model           = @$form.data('validate-model')
     @$button         = @$form.find('[type=submit]')
-    @validationRoute = "/#{window.MagicWord.enginePath}/validations"
+    @validationRoute = "/#{MagicWord.enginePath}/validations"
     @$button.click @validateInputs
     @$button.attr('disabled', false).removeClass('disabled')
 
@@ -24,7 +24,7 @@ class window.ValidatableForm
 
   _inputs: ->
     _.map @$form.find('[data-validate][name]'), (input) =>
-      new ValidatableInput $(input), this
+      new MagicWord.ValidatableInput $(input), this
 
   _isSuccess: (input, response) ->
     if !!@_responseValue(input, response) then 'error' else 'success'

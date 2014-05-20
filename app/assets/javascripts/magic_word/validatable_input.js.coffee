@@ -1,4 +1,4 @@
-class window.ValidatableInput
+class MagicWord.ValidatableInput
   constructor: (@$el, @form) ->
     parts          = @$el.attr('name').replace(/\]/g, '').split('[')
     @model         = _.first(parts)
@@ -6,7 +6,7 @@ class window.ValidatableInput
     @event         = @$el.data('validate-event') or 'input keyup'
     @timeoutLength = @$el.data('validate-timeout') or 500
     @dependency    = @_dependency()
-    @message       = new ValidationMessage @$el
+    @message       = new MagicWord.ValidationMessage @$el
     @$el.bind @event, @validate
 
   validate: =>
@@ -20,7 +20,7 @@ class window.ValidatableInput
   #private
 
   _dependency: ->
-    new ValidatableInput($("#{@$el.data('validate-with')}[name]"), @form) if @$el.data('validate-with')?
+    new MagicWord.ValidatableInput($("#{@$el.data('validate-with')}[name]"), @form) if @$el.data('validate-with')?
 
   _forceValidate: -> @forceValidate or= @$el.data('validate-force')
 

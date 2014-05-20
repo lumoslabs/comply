@@ -1,7 +1,4 @@
+#= require magic_word/config
 #= require_tree .
 
-window.MagicWord = {
-  enginePath: 'magic_word'
-}
-
-$ -> $('[data-validate-model]').each -> new ValidatableForm $(this)
+$ -> $('[data-validate-model]').each -> new MagicWord.ValidatableForm $(this)
