@@ -1,8 +1,9 @@
 class window.ValidatableForm
-  constructor: (@$form, @validationRoute) ->
+  constructor: (@$form) ->
     @inputs          = @_inputs()
     @model           = @$form.data('validate-model')
     @$button         = @$form.find('[type=submit]')
+    @validationRoute = "/#{window.MagicWord.enginePath}/validations"
     @$button.click @validateInputs
     @$button.attr('disabled', false).removeClass('disabled')
 

@@ -22,5 +22,4 @@ module MagicWord
       params.require(params[:model].to_sym).permit(*@fields.keys.map(&:to_sym))
     end
   end
-
 end
