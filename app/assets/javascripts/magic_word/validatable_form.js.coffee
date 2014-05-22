@@ -12,7 +12,7 @@ class MagicWord.ValidatableForm
     @validate inputs: @inputs, submit: true
 
   validate: (options) ->
-    $.post @validationRoute, @_params(), (response) =>
+    $.get @validationRoute, @_params(), (response) =>
       return @$form.submit() if options.submit && @_allSuccess(response)
       _.each options.inputs, (input) =>
         status = @_isSuccess(input, response)

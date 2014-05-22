@@ -1,3 +1,3 @@
 MagicWord::Engine.routes.draw do
-  match '/validations' => 'validations#create', via: :post
+  match '/validations' => 'validations#show', via: :get
 end
