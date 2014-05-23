@@ -11,7 +11,7 @@ module MagicWord
     private
 
     def post_params
-      params.require(params[:model].to_sym).permit(*@fields.keys.map(&:to_sym))
+      params.require(params[:model].to_sym).permit!
     end
 
     def require_fields
