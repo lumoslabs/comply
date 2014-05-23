@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
-  resources :movies
+  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   mount MagicWord::Engine => '/magic_word'
+
+  resources :movies
 end
