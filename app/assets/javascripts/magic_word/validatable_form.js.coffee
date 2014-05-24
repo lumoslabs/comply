@@ -14,11 +14,14 @@ class MagicWord.ValidatableForm
   validate: (options) ->
     $.get @validationRoute, @_params(), (response) =>
       return @$form.submit() if options.submit && @_allSuccess(response)
-      _.each options.inputs, (input) =>
-        status = @_isSuccess(input, response)
-        input.setMessage status, @_responseValue(input, response, status)
+      @_setMessages(options.inputs, response)
 
   # private
+
+  _setMessages: (inputs, response) =>
+    _.each inputs, (input) =>
+        status = @_isSuccess(input, response)
+        input.setMessage status, @_responseValue(input, response, status)
 
   _allSuccess: (response) -> !_.detect response.error, (e) -> e.length
 
