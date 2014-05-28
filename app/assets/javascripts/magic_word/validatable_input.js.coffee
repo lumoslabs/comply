@@ -5,6 +5,7 @@ class MagicWord.ValidatableInput
     @attrName      = _.last(parts).split('(')[0]
     @event         = @$el.data('validate-event') or 'input keyup'
     @timeoutLength = @$el.data('validate-timeout') or 500
+    @successMessage = @$el.data('validate-success')
     @dependency    = @_dependency()
     @message       = new MagicWord.ValidationMessage @$el
     @$el.bind @event, @validate
@@ -15,6 +16,7 @@ class MagicWord.ValidatableInput
       @timeout = setTimeout @_submitValidations, @timeoutLength
 
   setMessage: (status, message) ->
+    message = @successMessage if status is 'success'
     @message["#{status}Message"] message
 
   #private

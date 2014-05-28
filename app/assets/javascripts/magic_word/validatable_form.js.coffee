@@ -35,5 +35,4 @@ class MagicWord.ValidatableForm
   _params: -> "#{$.param(model: @model)}&#{@$form.serialize()}"
 
   _responseValue: (input, response, status = 'error') ->
-    msg = response[status][input.attrName]
-    if typeof msg is 'object' then _.last msg else msg
+    if response[status]? then response[status][input.attrName]

@@ -1,11 +1,11 @@
 <%= form_for @movie, html: { data: { validate_model: 'movie' } } do |f| %>
   <div class="field">
     <%= f.label :title %><br>
-    <%= f.text_field :title, data: { validate: true } %>
+    <%= f.text_field :title, data: { validate: true, validate_success: 'Cool title!' } %>
   </div>
   <div class="field">
     <%= f.label :description %><br>
-    <%= f.text_area :description, data: { validate: true } %>
+    <%= f.text_area :description, data: { validate: true, validate_success: 'Sweet description!' } %>
   </div>
   <div class="field">
     <%= f.label :release_date %><br>
@@ -13,7 +13,7 @@
   </div>
   <div class="field">
     <%= f.label :rating %><br>
-    <%= f.number_field :rating, data: { validate: true } %>
+    <%= f.number_field :rating, data: { validate: true, validate_success: 'But what do you really think?' } %>
   </div>
   <div class="actions">
     <%= f.submit %>
