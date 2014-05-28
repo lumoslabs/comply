@@ -59,7 +59,7 @@ describe 'ValidatableForm', ->
 
     describe 'when input is valid', ->
       beforeEach ->
-        @response = { error: {}, success: [] }
+        @response = { error: {} }
 
       it 'returns success', ->
         expect(@form._isSuccess(@input, @response)).toBe('success')
@@ -68,7 +68,7 @@ describe 'ValidatableForm', ->
     beforeEach ->
       @input = _.first @form._inputs()
       spyOn @input.message, 'resetMessage'
-      @form._setMessages [@input], { error: {}, success: [] }
+      @form._setMessages [@input], { error: {} }
 
     it 'sets the message on ValidationMessage', ->
       expect(@input.message.resetMessage).toHaveBeenCalled()

@@ -28,6 +28,11 @@ describe MagicWord::ValidationsController do
         subject
         expect(response).to be_success
       end
+
+      it 'returns no errors' do
+        subject
+        expect(response_body).to eql({'error' => {}})
+      end
     end
 
     context 'with invalid fields' do
