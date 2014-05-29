@@ -2,7 +2,7 @@ class MagicWord.BaseValidationMessage
   constructor: (@$el) ->
     if multiparam = @$el.data('multiparam')
       selector = "[data-multiparam=#{multiparam}].validation-msg"
-      @$el.parent().append("<div data-multiparam='#{multiparam}' class='validation-msg'></div>") if _.isEmpty $(selector)
+      @$el.parent().append("<div data-multiparam='#{multiparam}' class='validation-msg'></div>") unless $(selector).length
       @$messageField = $(selector)
     else
       @$el.after("<div class='validation-msg'></div>")

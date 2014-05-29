@@ -1,8 +1,8 @@
 class MagicWord.ValidatableInput
   constructor: (@$el, @form) ->
     parts          = @$el.attr('name').replace(/\]/g, '').split('[')
-    @model         = _.first(parts)
-    @attrName      = _.last(parts).split('(')[0]
+    @model         = parts[0]
+    @attrName      = parts[parts.length - 1].split('(')[0]
     @event         = @$el.data('validate-event') or 'input keyup'
     @timeoutLength = @$el.data('validate-timeout') or 500
     @successMessage = @$el.data('validate-success')
@@ -29,13 +29,13 @@ class MagicWord.ValidatableInput
   _multiparam: -> @multiparam or= @$el.data('multiparam')
 
   _multiparamFields: ->
-    _.without $("[data-multiparam=#{@_multiparam()}]"), _.first(@$el)
+    field for field in $("[data-multiparam=#{@_multiparam()}]") when field isnt @$el[0]
 
   _$multiparamFields: ->
-    @$multiparamFields or= _.map @_multiparamFields(), (field) -> $(field)
+    @$multiparamFields or= $(field) for field in @_multiparamFields()
 
-  _submitValidations: => @form.validate inputs: _.compact [this, @dependency]
+  _submitValidations: => @form.validate inputs: (el for el in [this, @dependency] when el)
 
   _validatable: ->
     return true if @_forceValidate() or not @_multiparam()
-    !_.detect @_$multiparamFields(), ($el) -> _.isEmpty $el.val()
+    !($el for $el in @_$multiparamFields() when !$el.val().length).length
