@@ -37,8 +37,8 @@ On the input tags you want validated, add the `data-validate` tag:
 Of course, this all assumes you have ActiveRecord validations set up in your model:
 ```ruby
 class Movie < ActiveRecord::Base
-  validates_presence_of :title
-  validates_presence_of :description
+  validates :title, presence: true, uniqueness: true
+  validates :desciption, presence: true
 end
 ```
 
