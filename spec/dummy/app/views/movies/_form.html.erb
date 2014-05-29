@@ -9,7 +9,7 @@
   </div>
   <div class="field">
     <%= f.label :release_date %><br>
-    <%= f.date_select :release_date %>
+    <%= f.date_select :release_date, {}, data: { validate: true, multiparam: 'release_date', validate_success: 'So fresh!' } %>
   </div>
   <div class="field">
     <%= f.label :rating %><br>
