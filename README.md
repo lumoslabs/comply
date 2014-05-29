@@ -129,7 +129,7 @@ Javascript file:
 MagicWord.enginePath = 'joanie_loves_chachi';
 ```
 
-## Intenion and Purpose
+## Intention and Purpose
 Rendering the same page over and over due to validations is a slow and unpleasant user experience. The logical alternative is, of course, validating the form on the page, before it is submitted.
 
 Though it's better, doing that still requires duplicating your validations on the client and server. Any time you change a validation in one place, it must be changed in the other as well. In addition, some validations require hitting the server and database, for example validating the uniqueness of an email address.
