@@ -63,7 +63,7 @@ You can change the jQuery event which triggers the input validation with the `da
 Note: the default event is `input keyup`.
 
 ### Timeouts
-You can delay the triggering of an input's validation by setting the `data-validate-timeout` attribute. This is great for things like checking a string's format so that it won't trigger until the user has had a chance to typing.
+You can delay the triggering of an input's validation by setting the `data-validate-timeout` attribute. This is great for things like checking a string's format so that it won't trigger until the user has had a chance to finish typing.
 ```erb
 <div class="field">
   <%= f.text_field :description, data: { validate: true, validate_timeout: 1000 } %>
