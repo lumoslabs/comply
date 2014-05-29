@@ -13,7 +13,6 @@ mount MagicWord::Engine => '/magic_word'
 Require the javascript files & dependencies in the form's corresponding javascript file (requires Asset Pipeline):
 ```js
 //= require jquery
-//= require lodash
 //= require magic_word
 ```
 

@@ -19,14 +19,14 @@ class MagicWord.ValidatableForm
   # private
 
   _setMessages: (inputs, response) =>
-    _.each inputs, (input) =>
-        status = @_isSuccess(input, response)
-        input.setMessage status, @_responseValue(input, response, status)
+    for input in inputs
+      status = @_isSuccess(input, response)
+      input.setMessage status, @_responseValue(input, response, status)
 
-  _allSuccess: (response) -> !_.detect response.error, (e) -> e.length
+  _allSuccess: (response) -> !Object.keys(response.error).length
 
   _inputs: ->
-    _.map @$form.find('[data-validate][name]'), (input) =>
+    for input in @$form.find('[data-validate][name]')
       new MagicWord.ValidatableInput $(input), this
 
   _isSuccess: (input, response) ->

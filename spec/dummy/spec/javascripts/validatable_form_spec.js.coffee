@@ -48,7 +48,7 @@ describe 'ValidatableForm', ->
 
   describe '#_isSuccess', ->
     beforeEach ->
-      @input = _.first @form._inputs()
+      @input = @form._inputs()[0]
 
     describe 'when input is invalid', ->
       beforeEach ->
@@ -66,7 +66,7 @@ describe 'ValidatableForm', ->
 
   describe '#_setMessages', ->
     beforeEach ->
-      @input = _.first @form._inputs()
+      @input = @form._inputs()[0]
       spyOn @input.message, 'resetMessage'
       @form._setMessages [@input], { error: {} }
 
