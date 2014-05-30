@@ -29,15 +29,9 @@ describe MagicWord::ValidationsController do
         expect(response).to be_success
       end
 
-      context 'when model has valid messages' do
-        let(:valid_message) { { 'title' => 'Cool title!' } }
-
-        before { Movie.any_instance.stub(valid_messages: valid_message) }
-
-        it 'returns the successful validation message' do
-          subject
-          expect(response_body['success']).to eql(valid_message)
-        end
+      it 'returns no errors' do
+        subject
+        expect(response_body).to eql({'error' => {}})
       end
     end
 

@@ -14,16 +14,19 @@ class MagicWord.ValidatableForm
   validate: (options) ->
     $.get @validationRoute, @_params(), (response) =>
       return @$form.submit() if options.submit && @_allSuccess(response)
-      _.each options.inputs, (input) =>
-        status = @_isSuccess(input, response)
-        input.setMessage status, @_responseValue(input, response, status)
+      @_setMessages(options.inputs, response)
 
   # private
 
-  _allSuccess: (response) -> !_.detect response.error, (e) -> e.length
+  _setMessages: (inputs, response) =>
+    for input in inputs
+      status = @_isSuccess(input, response)
+      input.setMessage status, @_responseValue(input, response, status)
+
+  _allSuccess: (response) -> !Object.keys(response.error).length
 
   _inputs: ->
-    _.map @$form.find('[data-validate][name]'), (input) =>
+    for input in @$form.find('[data-validate][name]')
       new MagicWord.ValidatableInput $(input), this
 
   _isSuccess: (input, response) ->
@@ -32,5 +35,4 @@ class MagicWord.ValidatableForm
   _params: -> "#{$.param(model: @model)}&#{@$form.serialize()}"
 
   _responseValue: (input, response, status = 'error') ->
-    msg = response[status][input.attrName]
-    if typeof msg is 'object' then _.last msg else msg
+    if response[status]? then response[status][input.attrName]

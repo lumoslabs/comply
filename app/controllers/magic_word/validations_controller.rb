@@ -5,13 +5,13 @@ module MagicWord
     def show
       instance = @model.new(post_params)
       instance.valid?
-      render json: {error: instance.errors, success: instance.respond_to?(:valid_messages) ? instance.valid_messages : []}
+      render json: { error: instance.errors }
     end
 
     private
 
     def post_params
-      params.require(params[:model].to_sym).permit(*@fields.keys.map(&:to_sym))
+      params.require(params[:model].to_sym).permit!
     end
 
     def require_fields
