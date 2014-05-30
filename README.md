@@ -13,6 +13,11 @@ Include Magic Word in your gemfile:
 ```ruby
 gem 'magic_word'
 ```
+If you are using Rails 3, you need to include `strong_parameters`
+```ruby
+gem 'magic_word'
+gem 'strong_parameters'
+```
 Mount the engine in your `routes.rb`:
 ```ruby
 mount MagicWord::Engine => '/magic_word'
