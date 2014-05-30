@@ -1,6 +1,13 @@
 # MagicWord
 Server-side ActiveRecord validations, all up in your client-side HTML.
 
+## Intention and Purpose
+Rendering the same page over and over due to validations is a slow and unpleasant user experience. The logical alternative is, of course, validating the form on the page, before it is submitted.
+
+Though it's better, doing that still requires duplicating your validations on the client and server. Any time you change a validation in one place, it must be changed in the other as well. In addition, some validations require hitting the server and database, for example validating the uniqueness of an email address.
+
+The solution offered here is combine the server-side validations with inline error messages on the form. This is done by creating an API for validating your objects. When triggered, the form is serialized and sent to the API endpoint, where it is instantiated as your ActiveRecord model, and validations are run. The API returns the instance's error messages, which the form uses to determine if the described object is valid.
+
 ## Basic Usage
 Include Magic Word in your gemfile:
 ```ruby
@@ -62,7 +69,7 @@ You can change the jQuery event which triggers the input validation with the `da
 Note: the default event is `input keyup`.
 
 ### Timeouts
-You can delay the triggering of an input's validation by setting the `data-validate-timeout` attribute. This is great for things like checking a string's format so that it won't trigger until the user has had a chance to finish typing.
+You can delay validation by setting the `data-validate-timeout` attribute. This is great for things like checking a string's format so that it won't validate until the user has had a chance to finish typing.
 ```erb
 <div class="field">
   <%= f.text_field :description, data: { validate: true, validate_timeout: 1000 } %>
@@ -87,9 +94,10 @@ Want to validate multiple fields as one like a multiparameter attribute? Add the
 ```
 
 #### Forcing validations on multiparameters
-Normally, a multiparameter input won't trigger until all of its fields have been completed. If you want to override that, you can set the `data-validate-force` attribute.
+Normally, a multiparameter input won't validate until all of its fields have been completed. If you want to override that, you can set the `data-validate-force` attribute. This is good if you don't want to represent your multiparameter fields as one unit.
 ```erb
-<%= f.date_select :release_date, {}, data: { validate: true, multiparam: 'release_date', validate_force: true } %>
+<%= f.date_select :release_date, { order: [:month, :day] }, data: { validate: true, multiparam: 'release_date' } %>
+<%= f.text_field :'release_date(1i)', id: 'release_date_1i', data: { validate: true, multiparam: 'release_date', validate_force: true } %>
 ```
 
 ## Customizing the ValidationMessage class
@@ -127,10 +135,3 @@ Javascript file:
 
 MagicWord.enginePath = 'joanie_loves_chachi';
 ```
-
-## Intention and Purpose
-Rendering the same page over and over due to validations is a slow and unpleasant user experience. The logical alternative is, of course, validating the form on the page, before it is submitted.
-
-Though it's better, doing that still requires duplicating your validations on the client and server. Any time you change a validation in one place, it must be changed in the other as well. In addition, some validations require hitting the server and database, for example validating the uniqueness of an email address.
-
-The solution offered here is combine the server-side validations with inline error messages on the form. This is done by creating an API for validating your objects. When triggered, the form is serialized and sent to the API endpoint, where it is instantiated as your ActiveRecord model, and validations are run. The API returns the instance's error messages, which the form uses to determine if the described object is valid.
