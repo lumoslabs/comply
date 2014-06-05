@@ -59,26 +59,20 @@ You can control the behavior of your validatable inputs in a variety of ways.
 ### Success messages
 Want success messages to add some personality to your forms? Add the message as the `data-validate-success` attribute.
 ```erb
-<div class="field">
-  <%= f.text_field :title, data: { validate: true, validate_success: "Sweet title yo!" } %>
-</div>
+<%= f.text_field :title, data: { validate: true, validate_success: "Sweet title yo!" } %>
 ```
 
 ### Event triggers
 You can change the jQuery event which triggers the input validation with the `data-validate-event` attribute.
 ```erb
-<div class="field">
-  <%= f.text_field :description, data: { validate: true, validate_event: 'click' } %>
-</div>
+<%= f.text_field :description, data: { validate: true, validate_event: 'click' } %>
 ```
 Note: the default event is `input keyup`.
 
 ### Timeouts
 You can delay validation by setting the `data-validate-timeout` attribute. This is great for things like checking a string's format so that it won't validate until the user has had a chance to finish typing.
 ```erb
-<div class="field">
-  <%= f.text_field :description, data: { validate: true, validate_timeout: 1000 } %>
-</div>
+<%= f.text_field :description, data: { validate: true, validate_timeout: 1000 } %>
 ```
 Note: the amount is in milliseconds, and the default amount is 500 milliseconds.
 
