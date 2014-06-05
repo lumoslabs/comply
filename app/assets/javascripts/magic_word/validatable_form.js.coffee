@@ -13,7 +13,7 @@ class MagicWord.ValidatableForm
 
   validate: (options) ->
     $.get @validationRoute, @_params(), (response) =>
-      return @$form.submit() if options.submit && @_allSuccess(response)
+      return @$form.submit() if options.submit and @_allSuccess(response)
       @_setMessages(options.inputs, response)
 
   # private
@@ -23,7 +23,7 @@ class MagicWord.ValidatableForm
       status = @_isSuccess(input, response)
       input.setMessage status, @_responseValue(input, response, status)
 
-  _allSuccess: (response) -> !Object.keys(response.error).length
+  _allSuccess: (response) -> not (err for field, err of response.error when err.length).length
 
   _inputs: ->
     for input in @$form.find('[data-validate][name]')
