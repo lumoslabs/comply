@@ -5,8 +5,8 @@ describe 'ValidatableForm', ->
     @model = 'movie'
     @value = 'Gymkata'
     input = "<input data-validate='true' name='movie[title]' value='#{@value}' type='text'>"
-    @form_jquery = $("<form data-validate-model='#{@model}'>#{input}</form>")
-    @form = new MagicWord.ValidatableForm @form_jquery
+    @formjQuery = $("<form data-validate-model='#{@model}'>#{input}</form>")
+    @form = new MagicWord.ValidatableForm @formjQuery
 
   describe '#constructor', ->
     it 'sets the model to validate', ->
@@ -18,7 +18,7 @@ describe 'ValidatableForm', ->
     describe 'when MagicWord.enginePath has been set', ->
       beforeEach ->
         MagicWord.enginePath = 'wally_world'
-        @form = new MagicWord.ValidatableForm @form_jquery
+        @form = new MagicWord.ValidatableForm @formjQuery
 
       it 'sets the given validation path', ->
         expect(@form.validationRoute).toBe('/wally_world/validations')
