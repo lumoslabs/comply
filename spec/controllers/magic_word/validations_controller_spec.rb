@@ -9,7 +9,8 @@ describe MagicWord::ValidationsController do
       {
         title: 'Encino Man',
         description: 'Brendan Frazier & Pauly Shore are "funny"',
-        rating: 5
+        rating: 5,
+        release_date: Date.today
       }
     end
 
@@ -40,7 +41,8 @@ describe MagicWord::ValidationsController do
         {
           title: nil,
           description: 'Brendan Frazier & Pauly Shore are "funny"',
-          rating: 5
+          rating: 5,
+          release_date: Date.today
         }
       end
 

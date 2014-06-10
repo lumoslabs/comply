@@ -3,12 +3,16 @@ module MagicWord
     before_filter :require_model, :require_fields
 
     def show
-      instance = @model.new(post_params)
-      instance.valid?
-      render json: { error: instance.errors }
+      @instance = instance
+      @instance.valid?
+      render json: { error: @instance.errors }
     end
 
     private
+
+    def instance
+      @model.new(post_params)
+    end
 
     def post_params
       params.require(params[:model].to_sym).permit!
