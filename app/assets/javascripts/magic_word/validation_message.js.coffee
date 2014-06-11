@@ -1,1 +1,0 @@
-class MagicWord.ValidationMessage extends MagicWord.BaseValidationMessage

@@ -2,4 +2,4 @@
 // All this logic will automatically be available in application.js.
 
 //= require jquery
-//= require magic_word
+//= require comply

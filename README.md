@@ -1,4 +1,4 @@
-# MagicWord
+# Comply
 Server-side ActiveRecord validations, all up in your client-side HTML.
 
 ## Intention and Purpose
@@ -9,23 +9,23 @@ Though it's better, doing that still requires duplicating your validations on th
 The solution offered here is combine the server-side validations with inline error messages on the form. This is done by creating an API for validating your objects. When triggered, the form is serialized and sent to the API endpoint, where it is instantiated as your ActiveRecord model, and validations are run. The API returns the instance's error messages, which the form uses to determine if the described object is valid.
 
 ## Basic Usage
-Include Magic Word in your gemfile:
+Include Comply in your gemfile:
 ```ruby
-gem 'magic_word'
+gem 'comply'
 ```
 If you are using Rails 3, you need to include `strong_parameters`
 ```ruby
-gem 'magic_word'
+gem 'comply'
 gem 'strong_parameters'
 ```
 Mount the engine in your `routes.rb`:
 ```ruby
-mount MagicWord::Engine => '/magic_word'
+mount Comply::Engine => '/comply'
 ```
 Require the javascript files & dependencies in the form's corresponding javascript file (requires Asset Pipeline):
 ```js
 //= require jquery
-//= require magic_word
+//= require comply
 ```
 
 In your form:
@@ -100,11 +100,11 @@ Normally, a multiparameter input won't validate until all of its fields have bee
 ```
 
 ## Customizing the ValidationMessage class
-If you don't want to use the default `MagicWord.ValidationMessage`, which is responsible for putting the validation message tag on the page and handling the display of messages, great news: you can overwrite it!
+If you don't want to use the default `Comply.ValidationMessage`, which is responsible for putting the validation message tag on the page and handling the display of messages, great news: you can overwrite it!
 
-After you've included MagicWord in the Asset Pipeline, feel free to extend it! For example (in `foo.js.coffee`):
+After you've included Comply in the Asset Pipeline, feel free to extend it! For example (in `foo.js.coffee`):
 ```coffeescript
-class MagicWord.ValidationMessage extends MagicWord.BaseValidationMessage
+class Comply.ValidationMessage extends Comply.BaseValidationMessage
   constructor: (@$el) ->
     super
     console.log 'We can build him. We have the technology.'
@@ -126,11 +126,11 @@ class MagicWord.ValidationMessage extends MagicWord.BaseValidationMessage
 If you would like to mount the engine under a different namespace, all you need to do is add the engine path to the javascript object:
 Routes file:
 ```ruby
-mount MagicWord::Engine => '/joanie_loves_chachi'
+mount Comply::Engine => '/joanie_loves_chachi'
 ```
 Javascript file:
 ```javascript
-//= require magic_word
+//= require comply
 
-MagicWord.enginePath = 'joanie_loves_chachi';
+Comply.enginePath = 'joanie_loves_chachi';
 ```

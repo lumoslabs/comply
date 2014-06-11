@@ -1,0 +1,3 @@
+window.Comply = {
+  enginePath: 'comply',
+}

@@ -1,4 +1,4 @@
- #= require magic_word
+ #= require comply
 
 describe 'ValidatableForm', ->
   beforeEach ->
@@ -6,19 +6,19 @@ describe 'ValidatableForm', ->
     @value = 'Gymkata'
     input = "<input data-validate='true' name='movie[title]' value='#{@value}' type='text'>"
     @formjQuery = $("<form data-validate-model='#{@model}'>#{input}</form>")
-    @form = new MagicWord.ValidatableForm @formjQuery
+    @form = new Comply.ValidatableForm @formjQuery
 
   describe '#constructor', ->
     it 'sets the model to validate', ->
       expect(@form.model).toBe(@model)
 
     it 'sets the default validation path', ->
-      expect(@form.validationRoute).toBe('/magic_word/validations')
+      expect(@form.validationRoute).toBe('/comply/validations')
 
-    describe 'when MagicWord.enginePath has been set', ->
+    describe 'when Comply.enginePath has been set', ->
       beforeEach ->
-        MagicWord.enginePath = 'wally_world'
-        @form = new MagicWord.ValidatableForm @formjQuery
+        Comply.enginePath = 'wally_world'
+        @form = new Comply.ValidatableForm @formjQuery
 
       it 'sets the given validation path', ->
         expect(@form.validationRoute).toBe('/wally_world/validations')

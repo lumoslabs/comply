@@ -1,4 +1,4 @@
-class MagicWord.BaseValidationMessage
+class Comply.BaseValidationMessage
   constructor: (@$el) ->
     if multiparam = @$el.data('multiparam')
       selector = "[data-multiparam=#{multiparam}].validation-msg"

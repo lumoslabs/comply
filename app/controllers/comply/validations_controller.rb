@@ -1,5 +1,5 @@
-module MagicWord
-  class ValidationsController < MagicWord::ApplicationController
+module Comply
+  class ValidationsController < Comply::ApplicationController
     before_filter :require_model, :require_fields
 
     def show

@@ -1,0 +1,1 @@
+class Comply.ValidationMessage extends Comply.BaseValidationMessage

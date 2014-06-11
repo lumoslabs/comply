@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe MagicWord::ValidationsController do
-  routes { MagicWord::Engine.routes }
+describe Comply::ValidationsController do
+  routes { Comply::Engine.routes }
 
   describe 'POST #create' do
     let(:model) { 'movie' }

@@ -1,13 +1,13 @@
 $:.push File.expand_path('../lib', __FILE__)
 
-require 'magic_word/version'
+require 'comply/version'
 
 Gem::Specification.new do |s|
-  s.name        = 'magic_word'
-  s.version     = MagicWord::VERSION
+  s.name        = 'comply'
+  s.version     = Comply::VERSION
   s.authors     = ['@jacobaweiss', '@andyjbas', '@azach']
   s.email       = ['jack@lumoslabs.com']
-  s.homepage    = 'http://www.github.com/lumoslabs/magic_word'
+  s.homepage    = 'http://www.github.com/lumoslabs/comply'
   s.summary     = 'Inline validation of your ActiveRecord models via the AJAX internets'
   s.description = 'Validate your ActiveRecord models on the client, showing their error and success messages by providing a validation controller.'
 

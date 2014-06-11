@@ -1,9 +1,9 @@
-#= require magic_word
+#= require comply
 
 describe 'ValidationMessage', ->
   beforeEach ->
     @messageBox = $('<div>Stuff</div>')
-    @m = new MagicWord.ValidationMessage @messageBox
+    @m = new Comply.ValidationMessage @messageBox
 
   describe '#constructor', ->
     it 'creates a validation message div', ->

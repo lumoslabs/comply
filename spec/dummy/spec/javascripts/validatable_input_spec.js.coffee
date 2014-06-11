@@ -1,11 +1,11 @@
-#= require magic_word
+#= require comply
 
 describe 'ValidatableInput', ->
   beforeEach ->
     @defaultTimeoutLength = 500
     @form = validate: ->
     @inputjQuery = $("<input name='foo[bar]'/>")
-    @input = new MagicWord.ValidatableInput @inputjQuery, @form
+    @input = new Comply.ValidatableInput @inputjQuery, @form
 
   describe '#constructor', ->
     it 'sets the default timeout length to 500ms', ->
@@ -17,7 +17,7 @@ describe 'ValidatableInput', ->
     describe 'when timeout length is set on the input', ->
       beforeEach ->
         @inputjQuery = $("<input data-validate-timeout='666' name='foo[bar]' value='' />")
-        @input = new MagicWord.ValidatableInput @inputjQuery, @form
+        @input = new Comply.ValidatableInput @inputjQuery, @form
 
       it 'uses the timeout length provided', ->
         expect(@input.timeoutLength).toBe(666)
@@ -25,7 +25,7 @@ describe 'ValidatableInput', ->
     describe "when an alternate event is provided", ->
       beforeEach ->
         @inputjQuery = $("<input data-validate-event='input keydown' name='foo[bar]' />")
-        @input = new MagicWord.ValidatableInput @inputjQuery, @form
+        @input = new Comply.ValidatableInput @inputjQuery, @form
 
       it 'uses the event provided', ->
         expect(@input.event).toBe("input keydown")
@@ -59,7 +59,7 @@ describe 'ValidatableInput', ->
 
     describe 'with a dependency', ->
       beforeEach ->
-        @dependency = new MagicWord.ValidatableInput $("<input name='foo[baz]'/>"), @form
+        @dependency = new Comply.ValidatableInput $("<input name='foo[baz]'/>"), @form
         spyOn(@input, '_dependency').and.returnValue(@dependency)
         spyOn(@input.form, 'validate')
 
@@ -74,7 +74,7 @@ describe 'ValidatableInput', ->
     describe 'with forceValidate set', ->
       beforeEach ->
         @inputjQuery = $("<input data-validate-force='true' name='foo[bar]'/>")
-        @input = new MagicWord.ValidatableInput @inputjQuery, @form
+        @input = new Comply.ValidatableInput @inputjQuery, @form
 
       it 'is validatable', ->
         expect(@input._validatable()).toBe(true)
@@ -82,7 +82,7 @@ describe 'ValidatableInput', ->
     describe 'when not a multiparameter input', ->
       beforeEach ->
         @inputjQuery = $("<input name='foo[bar]'/>")
-        @input = new MagicWord.ValidatableInput @inputjQuery, @form
+        @input = new Comply.ValidatableInput @inputjQuery, @form
 
       it 'is true if forceValidate is set', ->
         expect(@input._validatable()).toBe(true)
