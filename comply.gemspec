@@ -15,10 +15,11 @@ Gem::Specification.new do |s|
   s.test_files = Dir['test/**/*']
 
   s.add_dependency 'coffee-rails'
+  s.add_dependency 'bartt-ssl_requirement', '~> 1.4.2'
   s.add_dependency 'rails'
 
+  s.add_development_dependency 'jasmine-rails'
+  s.add_development_dependency 'pry'
   s.add_development_dependency 'rspec-rails', '~> 2.14'
   s.add_development_dependency 'sqlite3'
-  s.add_development_dependency 'pry'
-  s.add_development_dependency 'jasmine-rails'
 end

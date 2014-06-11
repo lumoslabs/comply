@@ -1,16 +1,18 @@
 module Comply
   class ValidationsController < Comply::ApplicationController
+    ssl_allowed :show
+
     before_filter :require_model, :require_fields
 
     def show
-      @instance = instance
+      @instance = validation_instance
       @instance.valid?
       render json: { error: @instance.errors }
     end
 
     private
 
-    def instance
+    def validation_instance
       @model.new(post_params)
     end
 
