@@ -124,13 +124,33 @@ class Comply.ValidationMessage extends Comply.BaseValidationMessage
 
 ## Mounting the engine elsewhere
 If you would like to mount the engine under a different namespace, all you need to do is add the engine path to the javascript object:
-Routes file:
+
 ```ruby
+# routes.rb
 mount Comply::Engine => '/joanie_loves_chachi'
 ```
-Javascript file:
 ```javascript
 //= require comply
 
 Comply.enginePath = 'joanie_loves_chachi';
+```
+
+## Customizing Validation Behavior
+You can override the validation behavior by inheriting from `Comply::ValidationsController`. This can be useful for cases like forms which update specific attributes of an instance.
+
+For example, if you have a "change email" form, and you want to validate the email's uniqueness against the current user, you can override the `validation_instance` method on `Comply::ValidationsController`, set the validation controller's namespace with `enginePath`, and set up the corresponding routes.:
+```ruby
+# my_validations_controller.rb
+class MyValidationsController < Comply::ValidationsController
+  def validation_instance
+    current_user.attributes = @fields
+    current_user
+  end
+end
+
+# routes.rb
+match 'validations' => 'my_validations#show', only: :show
+```
+```javascript
+Comply.enginePath = '' // main app's namespace
 ```
