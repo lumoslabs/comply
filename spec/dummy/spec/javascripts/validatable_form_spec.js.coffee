@@ -20,8 +20,17 @@ describe 'ValidatableForm', ->
         Comply.enginePath = 'wally_world'
         @form = new Comply.ValidatableForm @formjQuery
 
-      it 'sets the given validation path', ->
+      it 'sets the given engine path', ->
         expect(@form.validationRoute).toBe('/wally_world/validations')
+
+    describe 'when the validation route has been set', ->
+      beforeEach ->
+        @route = '/custom/validations'
+        @formjQuery.data('validate-route', @route)
+        @form = new Comply.ValidatableForm @formjQuery
+
+      it 'sets the given validation route', ->
+        expect(@form.validationRoute).toBe(@route)
 
   describe '#_inputs', ->
     it 'creates a new ValidatableInput for each input', ->

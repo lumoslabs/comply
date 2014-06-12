@@ -3,7 +3,7 @@ class Comply.ValidatableForm
     @inputs          = @_inputs()
     @model           = @$form.data('validate-model')
     @$button         = @$form.find('[type=submit]')
-    @validationRoute = "/#{Comply.enginePath}/validations"
+    @validationRoute = @$form.data('validate-route') or "/#{Comply.enginePath}/validations"
     @$button.click @validateInputs
     @$button.attr('disabled', false).removeClass('disabled')
 
