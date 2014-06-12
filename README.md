@@ -54,7 +54,13 @@ end
 ```
 
 ## Customizations
-You can control the behavior of your validatable inputs in a variety of ways.
+You can control the behavior of your validatable forms and inputs in a variety of ways.
+
+### Validation route
+You can specify the route to be used for validation on the form by setting the `data-validate-route` attribute.
+```erb
+<%= form_for @movie, html: { data: { validate_model: 'movie', validate_route: custom_validation_path } } do |f| %>
+```
 
 ### Success messages
 Want success messages to add some personality to your forms? Add the message as the `data-validate-success` attribute.
@@ -138,7 +144,7 @@ Comply.enginePath = 'joanie_loves_chachi';
 ## Customizing Validation Behavior
 You can override the validation behavior by inheriting from `Comply::ValidationsController`. This can be useful for cases like forms which update specific attributes of an instance.
 
-For example, if you have a "change email" form, and you want to validate the email's uniqueness against the current user, you can override the `validation_instance` method on `Comply::ValidationsController`, set the validation controller's namespace with `enginePath`, and set up the corresponding routes.:
+For example, if you have a "change email" form, and you want to validate the email's uniqueness against the current user, you can override the `validation_instance` method on `Comply::ValidationsController`, set corresponding routes, and add the `data-validate-route` attribute to your form.
 ```ruby
 # my_validations_controller.rb
 class MyValidationsController < Comply::ValidationsController
@@ -149,8 +155,8 @@ class MyValidationsController < Comply::ValidationsController
 end
 
 # routes.rb
-match 'validations' => 'my_validations#show', only: :show
+match 'validations' => 'my_validations#show', only: :show, as: :my_validation
 ```
-```javascript
-Comply.enginePath = '' // main app's namespace
+```erb
+<%= form_for @movie, html: { data: { validate_model: 'movie', validate_route: my_validation_path } } do |f| %>
 ```
