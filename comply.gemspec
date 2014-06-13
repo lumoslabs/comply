@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.summary     = 'Inline validation of your ActiveRecord models via the AJAX internets'
   s.description = 'Validate your ActiveRecord models on the client, showing their error and success messages by providing a validation controller.'
 
-  s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
+  s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
   s.test_files = Dir['test/**/*']
 
   s.add_dependency 'coffee-rails'

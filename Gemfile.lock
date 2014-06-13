@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    comply (0.0.4)
+    comply (1.0.0)
       bartt-ssl_requirement (~> 1.4.2)
       coffee-rails
       rails
