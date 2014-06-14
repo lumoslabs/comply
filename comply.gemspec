@@ -5,7 +5,7 @@ require 'comply/version'
 Gem::Specification.new do |s|
   s.name        = 'comply'
   s.version     = Comply::VERSION
-  s.authors     = ['@jacobaweiss', '@andyjbas', '@azach']
+  s.authors     = ['@jacobaweiss', '@andyjbas', '@azach', '@linedotstar']
   s.email       = ['jack@lumoslabs.com']
   s.homepage    = 'http://www.github.com/lumoslabs/comply'
   s.summary     = 'Inline validation of your ActiveRecord models via the AJAX internets'

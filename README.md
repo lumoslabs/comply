@@ -1,5 +1,5 @@
 # Comply
-Server-side ActiveRecord validations, all up in your client-side HTML.
+Server-side ActiveRecord validations, all up in your HTML and client-side javascript.
 
 ## Intention and Purpose
 Rendering the same page over and over due to validations is a slow and unpleasant user experience. The logical alternative is, of course, validating the form on the page, before it is submitted.
