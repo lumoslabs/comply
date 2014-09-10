@@ -1,5 +1,7 @@
 class Comply.ValidatableForm
   constructor: (@$form) ->
+    return if @$form.data('complied')
+    @$form.data('complied', true)
     @inputs          = @_inputs()
     @model           = @$form.data('validate-model')
     @$button         = @$form.find('[type=submit]')
