@@ -29,7 +29,7 @@ describe 'ValidatableForm', ->
 
     it 'only binds the handlers to the form once', ->
       @submitButton.click()
-      expect(@validateInputsSpy.callCount).toBe(1)
+      expect(@validateInputsSpy.calledOnce).toBe(true)
 
     describe 'when Comply.enginePath has been set', ->
       beforeEach ->
