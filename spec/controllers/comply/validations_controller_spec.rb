@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Comply::ValidationsController do
+describe Comply::ValidationsController, type: :controller do
   routes { Comply::Engine.routes }
 
   describe 'POST #create' do
@@ -68,6 +68,16 @@ describe Comply::ValidationsController do
       it 'returns an error' do
         subject
         expect(response_body).to eql({'error' => 'Form fields not found'})
+        expect(response.status).to be(500)
+      end
+    end
+
+    context 'when model class does not exist' do
+      let(:model) { 'thisisnotreal' }
+
+      it 'returns an error' do
+        subject
+        expect(response_body).to eql({'error' => 'Model not found'})
         expect(response.status).to be(500)
       end
     end

@@ -27,6 +27,9 @@ module Comply
 
     def require_model
       @model = params[:model].classify.constantize if params[:model].present?
+    rescue NameError
+      @model = nil
+    ensure
       render json: { error: 'Model not found' }, status: 500 unless @model
     end
   end
