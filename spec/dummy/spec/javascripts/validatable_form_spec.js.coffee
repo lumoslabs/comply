@@ -1,7 +1,7 @@
  #= require comply
 
 describe 'ValidatableForm', ->
-  resetTheForm = (form)->
+  resetTheForm = (form) ->
     form.data("complied", false)
 
   beforeEach ->
@@ -49,6 +49,46 @@ describe 'ValidatableForm', ->
 
       it 'sets the given validation route', ->
         expect(@form.validationRoute).toBe(@route)
+
+  describe '#validate', ->
+    it 'fires the _onValidate and _onValidationSuccess events when model is valid', (done) ->
+      spyOn(@form, '_onValidate')
+      spyOn(@form, '_onValidationSuccess')
+      spyOn(@form, '_onValidationComplete')
+
+      spyOn(jQuery, 'ajax').and.callFake (e) =>
+        e.success({})
+        expect(@form._onValidate).toHaveBeenCalled()
+        expect(@form._onValidationSuccess).toHaveBeenCalled()
+        expect(@form._onValidationComplete).toHaveBeenCalled()
+        done()
+
+      @form.validate(submit: false, inputs: @form.inputs)
+
+    it 'fires the _onValidate and _onValidationFailure if validation fails', (done) ->
+      spyOn(@form, '_onValidate')
+      spyOn(@form, '_onValidationFailure')
+      spyOn(@form, '_onValidationComplete')
+
+      spyOn(jQuery, 'ajax').and.callFake (e) =>
+        e.success({error: {'field': 'error'}})
+        expect(@form._onValidate).toHaveBeenCalled()
+        expect(@form._onValidationFailure).toHaveBeenCalled()
+        expect(@form._onValidationComplete).toHaveBeenCalled()
+        done()
+
+      @form.validate(submit: false, inputs: @form.inputs)
+
+    it 'does not submit the form if _onValidationSuccess returns false', (done) ->
+      @form._onValidationSuccess = -> false
+      spyOn(@form.$form, 'submit')
+
+      spyOn(jQuery, 'ajax').and.callFake (e) =>
+        e.success({})
+        expect(@form.$form.submit).not.toHaveBeenCalled()
+        done()
+
+      @form.validate(submit: true, inputs: @form.inputs)
 
   describe '#_inputs', ->
     it 'creates a new ValidatableInput for each input', ->

@@ -1,8 +1,12 @@
+require 'strong_parameters'
+
 module Comply
   class ValidationsController < Comply::ApplicationController
     ssl_allowed :show
 
     before_filter :require_model, :require_fields
+
+    include ActiveModel::ForbiddenAttributesProtection
 
     def show
       @instance = validation_instance

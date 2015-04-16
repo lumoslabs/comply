@@ -15,10 +15,23 @@ class Comply.ValidatableForm
 
   validate: (options) ->
     $.get @validationRoute, @_params(), (response) =>
-      return @$form.submit() if options.submit and @_allSuccess(response)
+      @_onValidate(response)
+
+      if @_allSuccess(response)
+        if @_onValidationSuccess(response)
+          return @$form.submit() if options.submit
+      else
+        @_onValidationFailure(response)
+
       @_setMessages(options.inputs, response)
+      @_onValidationComplete()
 
   # private
+
+  _onValidate: (response) ->
+  _onValidationSuccess: (response) -> true
+  _onValidationFailure: (response) -> true
+  _onValidationComplete: ->
 
   _setMessages: (inputs, response) =>
     for input in inputs
