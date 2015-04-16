@@ -1,4 +1,7 @@
-require 'strong_parameters'
+begin
+  require 'strong_parameters'
+rescue LoadError
+end
 
 module Comply
   class ValidationsController < Comply::ApplicationController
@@ -6,7 +9,9 @@ module Comply
 
     before_filter :require_model, :require_fields
 
-    include ActiveModel::ForbiddenAttributesProtection
+    if ActiveModel.const_defined?(:ForbiddenAttributesProtection)
+      include ActiveModel::ForbiddenAttributesProtection
+    end
 
     def show
       @instance = validation_instance
