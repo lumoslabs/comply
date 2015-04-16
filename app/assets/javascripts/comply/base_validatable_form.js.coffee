@@ -23,15 +23,15 @@ class Comply.BaseValidatableForm
       else
         @_onValidationFailure(response)
 
-      @_setMessages(options.inputs, response)
-      @_onValidationComplete()
+      if @_onValidationComplete(response)
+        @_setMessages(options.inputs, response)
 
   # private
 
   _onValidate: (response) ->
   _onValidationSuccess: (response) -> true
   _onValidationFailure: (response) -> true
-  _onValidationComplete: ->
+  _onValidationComplete: (response) -> true
 
   _setMessages: (inputs, response) =>
     for input in inputs
