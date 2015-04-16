@@ -59,16 +59,15 @@ describe 'ValidatableInput', ->
 
     describe 'with a dependency', ->
       beforeEach ->
-        @dependency = new Comply.ValidatableInput $("<input name='foo[baz]'/>"), @form
-        spyOn(@input, '_dependency').and.returnValue(@dependency)
+        @input.dependency = new Comply.ValidatableInput $("<input name='foo[baz]'/>"), @form
         spyOn(@input.form, 'validate')
 
-    it 'validates another input if passed to validate-with', ->
-      @input.validate()
-      setTimeout =>
-        expect(@input.form.validate).toHaveBeenCalledWith(inputs: [@input, @dependency])
-        done()
-      , @defaultTimeoutLength
+      it 'validates another input if passed to validate-with', (done) ->
+        @input.validate()
+        setTimeout =>
+          expect(@input.form.validate).toHaveBeenCalledWith(inputs: [@input, @input.dependency])
+          done()
+        , @defaultTimeoutLength
 
   describe '#_validatable', ->
     describe 'with forceValidate set', ->

@@ -90,6 +90,17 @@ describe 'ValidatableForm', ->
 
       @form.validate(submit: true, inputs: @form.inputs)
 
+    it 'does not set validation messages if _onValidationComplete returns false', (done) ->
+      @form._onValidationComplete = -> false
+      spyOn(@form, '_setMessages')
+
+      spyOn(jQuery, 'ajax').and.callFake (e) =>
+        e.success({})
+        expect(@form._setMessages).not.toHaveBeenCalled()
+        done()
+
+      @form.validate(submit: false, inputs: @form.inputs)
+
   describe '#_inputs', ->
     it 'creates a new ValidatableInput for each input', ->
       expect(@form._inputs().length).toBe(1)
