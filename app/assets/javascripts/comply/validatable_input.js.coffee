@@ -22,7 +22,10 @@ class Comply.ValidatableInput
   #private
 
   _dependency: ->
-    new Comply.ValidatableInput($("#{@$el.data('validate-with')}[name]"), @form) if @$el.data('validate-with')?
+    if @$el.data('validate-with')?
+      new Comply.ValidatableInput(
+        $("#{@$el.data('validate-with')}[name]"), @form
+      )
 
   _forceValidate: -> @forceValidate or= @$el.data('validate-force')
 
@@ -34,7 +37,8 @@ class Comply.ValidatableInput
   _$multiparamFields: ->
     @$multiparamFields or= $(field) for field in @_multiparamFields()
 
-  _submitValidations: => @form.validate inputs: (el for el in [this, @dependency] when el)
+  _submitValidations: =>
+    @form.validate inputs: (el for el in [this, @dependency] when el)
 
   _validatable: ->
     return true if @_forceValidate() or not @_multiparam()
