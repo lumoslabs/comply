@@ -36,6 +36,7 @@ module Comply
 
     def require_model
       @model = params[:model].classify.constantize if params[:model].present?
+      raise NameError unless @model < ActiveModel::Validations
     rescue NameError
       @model = nil
     ensure

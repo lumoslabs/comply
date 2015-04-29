@@ -81,6 +81,16 @@ describe Comply::ValidationsController, type: :controller do
         expect(response.status).to be(500)
       end
     end
+
+    context 'when model is not validatable' do
+      let(:model) { 'hash' }
+
+      it 'returns an error' do
+        subject
+        expect(response_body).to eql({'error' => 'Model not found'})
+        expect(response.status).to be(500)
+      end
+    end
   end
 end
 
