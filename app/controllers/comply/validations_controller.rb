@@ -1,3 +1,4 @@
+require 'comply/whitelist_constantize'
 begin
   require 'strong_parameters'
 rescue LoadError
@@ -35,8 +36,8 @@ module Comply
     end
 
     def require_model
-      @model = params[:model].classify.constantize if params[:model].present?
-    rescue NameError
+      @model = Comply::WhitelistConstantize.constantize(params[:model]) if params[:model].present?
+    rescue NameError, Comply::WhitelistConstantize::NotWhitelistedError
       @model = nil
     ensure
       render json: { error: 'Model not found' }, status: 500 unless @model
