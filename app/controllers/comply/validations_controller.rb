@@ -1,4 +1,3 @@
-require 'comply/whitelist_constantize'
 begin
   require 'strong_parameters'
 rescue LoadError
