@@ -16,8 +16,12 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'coffee-rails'
   s.add_dependency 'bartt-ssl_requirement', '~> 1.4.2'
-  s.add_dependency 'rails', '~> 3.2.0'
-  s.add_dependency 'strong_parameters', '~> 0.2.0'
+  s.add_dependency 'rails', ENV['RAILS_VERSION'] || '~> 3.2.0'
+  if ENV['RAILS_VERSION'] && ENV['RAILS_VERSION'] >= '4'
+    s.add_dependency 'protected_attributes'
+  else
+    s.add_dependency 'strong_parameters', '~> 0.2.0'
+  end
 
   s.add_development_dependency 'pry-nav'
   s.add_development_dependency 'rspec-rails', '~> 3.2.0'
