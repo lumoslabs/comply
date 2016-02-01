@@ -34,4 +34,7 @@ Dummy::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Set eager_load to false in development
+  config.eager_load = false
 end
