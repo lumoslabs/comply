@@ -1,4 +1,4 @@
-require 'active_model/validations'
+require 'active_model'
 
 module Comply
   module WhitelistConstantize
