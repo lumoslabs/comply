@@ -5,8 +5,6 @@ end
 
 module Comply
   class ValidationsController < Comply::ApplicationController
-    ssl_allowed :show
-
     before_filter :require_model, :require_fields
 
     if ActiveModel.const_defined?(:ForbiddenAttributesProtection)
