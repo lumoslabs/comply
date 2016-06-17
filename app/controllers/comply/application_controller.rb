@@ -1,5 +1,5 @@
 module Comply
   class ApplicationController < ActionController::Base
-    include ::SslRequirement
+    force_ssl
   end
 end
