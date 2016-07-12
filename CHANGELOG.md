@@ -1,3 +1,6 @@
+# 1.6.0
+* Move Rails 4 & 3 compatibility to Gemfile rather than gemspec
+
 # 1.5.2
 * Add support for options requests
 
