@@ -1,6 +1,6 @@
 class Movie < ActiveRecord::Base
   validates_presence_of :title
-  validates_presence_of :description
+  validates_presence_of :description, unless: -> { validation_context == :comply }
   validates_presence_of :release_date
   validates :rating, inclusion: 1..5
   validate :released_less_than_a_year_ago

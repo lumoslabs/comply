@@ -52,6 +52,27 @@ describe Comply::ValidationsController, type: :controller do
       end
     end
 
+    context 'with comply-skipped validations' do
+      let(:fields) do
+        {
+          title: 'title',
+          description: nil,
+          rating: 5,
+          release_date: Date.today
+        }
+      end
+
+      it 'does not error' do
+        expect(response).to be_success
+      end
+
+      specify 'even though the model is invalid' do
+        movie = Movie.new(fields)
+        expect(movie).to be_invalid
+        expect(movie.valid?(:comply)).to eq(true)
+      end
+    end
+
     context 'without a model given' do
       let(:model) { '' }
 
