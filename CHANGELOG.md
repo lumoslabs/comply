@@ -1,3 +1,6 @@
+# 1.7.0
+* Pass custom context `:comply` to validations (the former context used to default to `:create`)
+
 # 1.6.0
 * Move Rails 4 & 3 compatibility to Gemfile rather than gemspec
 
