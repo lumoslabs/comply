@@ -13,7 +13,7 @@ module Comply
 
     def show
       @instance = validation_instance
-      @instance.valid?
+      @instance.valid?(:comply)
       render json: { error: @instance.errors }
     end
 
