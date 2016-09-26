@@ -83,15 +83,15 @@ describe Comply::ValidationsController, type: :controller do
             expect(response_body['error']).to include('description' => ["can't be blank"] )
           end
         end
-      end
 
-      context 'without a model given' do
-        let(:model) { '' }
+        context 'without a model given' do
+          let(:model) { '' }
 
-        it 'returns an error' do
-          subject
-          expect(response_body).to eql({'error' => 'Model not found'})
-          expect(response.status).to be(500)
+          it 'returns an error' do
+            subject
+            expect(response_body).to eql({'error' => 'Model not found'})
+            expect(response.status).to be(500)
+          end
         end
       end
 
