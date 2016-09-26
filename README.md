@@ -68,6 +68,45 @@ Want success messages to add some personality to your forms? Add the message as 
 <%= f.text_field :title, data: { validate: true, validate_success: "Sweet title yo!" } %>
 ```
 
+### Validation contexts
+Supplementary reading on validation contexts:
+- [ActiveRecord Validations :on](http://guides.rubyonrails.org/active_record_validations.html#on)
+- [Also see api.rubyonrails.org](http://api.rubyonrails.org/classes/ActiveRecord/Validations.html#method-i-valid-3F)
+- [Mastering Rails Validations: Contexts](http://blog.arkency.com/2014/04/mastering-rails-validations-contexts/)
+
+By default, all validations run through Comply's `Comply::ValidationsController` will be in the `:comply` validation
+context. This gives you the option to modify how your application runs its validations. The most common way to use
+validation contexts, is when you want to skip a certain validation. Let's say we didn't want to check the uniqueness
+of a particular attribute when asking Comply to validate a model. You would do this:
+
+```ruby
+class SomeModel < ActiveRecord::Base
+  validates :my_attribute, uniqueness: true, unless: -> { validation_context == :comply }
+  # or perhaps you *ONLY* want to run the validation when in the :comply context
+  validates :other_attribute, numericality: true, on: :comply
+end
+```
+
+You now have the option to specify your own context if you inherit from `Comply::ValidationsController` if your
+model has a specific business case for needing to run/not-run a set of validations for a given context.
+
+```ruby
+class SomeController < Comply::ValidationsController
+  # ... snip
+  protected
+
+  def validation_context
+    :my_new_context
+  end
+end
+
+class SomeModel
+  validates :my_attribute, uniqueness: true, unless: -> { validation_context == :my_new_context }
+end
+```
+
+That's it!
+
 ### Event triggers
 You can change the jQuery event which triggers the input validation with the `data-validate-event` attribute.
 ```erb

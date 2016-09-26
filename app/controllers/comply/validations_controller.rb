@@ -13,8 +13,14 @@ module Comply
 
     def show
       @instance = validation_instance
-      @instance.valid?(:comply)
+      @instance.valid?(validation_context)
       render json: { error: @instance.errors }
+    end
+
+    protected
+
+    def validation_context
+      :comply
     end
 
     private

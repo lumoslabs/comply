@@ -71,6 +71,19 @@ describe Comply::ValidationsController, type: :controller do
         expect(movie).to be_invalid
         expect(movie.valid?(:comply)).to eq(true)
       end
+
+      context 'in a new validation_context' do
+        class Comply::ValidationsController
+          def validation_context
+            :no_longer_comply
+          end
+        end
+
+        it 'throws an error' do
+          subject
+          expect(response_body['error']).to include('description' => ["can't be blank"] )
+        end
+      end
     end
 
     context 'without a model given' do
