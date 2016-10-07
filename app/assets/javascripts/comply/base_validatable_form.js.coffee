@@ -14,7 +14,7 @@ class Comply.BaseValidatableForm
     @validate inputs: @inputs, submit: true
 
   validate: (options) ->
-    $.get @validationRoute, @_params(), (response) =>
+    $.post @validationRoute, @_params(), (response) =>
       @_onValidate(response, options)
 
       if @_allSuccess(response)
