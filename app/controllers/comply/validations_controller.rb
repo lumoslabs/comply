@@ -12,6 +12,7 @@ module Comply
     end
 
     def show
+      ActiveSupport::Deprecation.warn('GET support going away: use POST to access this endpoint') if request.request_method == 'GET'
       @instance = validation_instance
       @instance.valid?(validation_context)
       render json: { error: @instance.errors }
