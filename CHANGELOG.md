@@ -1,6 +1,9 @@
-# 1.9.0
+# 1.9.0 (formerly 1.8.1)
 * Support both POST and GET at the `/validations` endpoint
 * Deprecate support for GET at the `/validations` endpoint
+
+# 1.8.0
+* Allow a Comply controller to define a custom validation context, instead of the default `:comply`.
 
 # 1.7.0
 * Pass custom context `:comply` to validations (the former context used to default to `:create`)
