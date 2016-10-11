@@ -84,7 +84,7 @@ describe Comply::ValidationsController, type: :controller do
           end
         end
       end
-      
+
       context 'without a model given' do
         let(:model) { '' }
 
