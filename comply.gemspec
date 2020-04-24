@@ -17,6 +17,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'coffee-rails'
   s.add_dependency 'rails'
   s.add_development_dependency 'pry-nav'
-  s.add_development_dependency 'rspec-rails', '~> 3.2.0'
+  s.add_development_dependency 'rspec-rails', '~> 4.0.0'
   s.add_development_dependency 'sqlite3'
 end

@@ -1,7 +1,7 @@
 sudo: false
 language: ruby
 rvm:
-  - 2.1.6
+  - 2.5.8
 cache: bundler
 before_script:
   - RAILS_ENV=test bundle exec rake db:create db:schema:load
@@ -11,3 +11,4 @@ script:
 env:
   - RAILS_VERSION=3.2.22.2
   - RAILS_VERSION=4.0.13
+  - RAILS_VERSION=5.0.1

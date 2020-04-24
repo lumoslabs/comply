@@ -5,13 +5,7 @@ source "https://rubygems.org"
 # development dependencies will be added by default to the :development group.
 gemspec
 
-gem 'rails', ENV['RAILS_VERSION'] || '~> 4.0.13'
-
-if ENV['RAILS_VERSION'] && ENV['RAILS_VERSION'] >= '4'
-  gem 'protected_attributes'
-else
-  gem 'strong_parameters', '~> 0.2.0'
-end
+gem 'rails', ENV['RAILS_VERSION'] || '~> 5.0.1'
 
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or
