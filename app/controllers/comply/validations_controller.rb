@@ -1,8 +1,3 @@
-begin
-  require 'strong_parameters'
-rescue LoadError
-end
-
 module Comply
   class ValidationsController < Comply::ApplicationController
     before_action :require_model, :require_fields
