@@ -1,13 +1,19 @@
 sudo: false
 language: ruby
 rvm:
-  - 2.1.6
+  - 2.5.8
 cache: bundler
 before_script:
-  - RAILS_ENV=test bundle exec rake db:create db:schema:load
+  - cd spec/dummy && RAILS_ENV=test bundle _1.17.3_ exec rake db:create db:schema:load && cd ../../
 script:
-  - bundle exec rspec
-
+  - bundle _1.17.3_ exec rspec spec --color --profile
+gemfile:
+  - Gemfile-rails-4.2.x
+  - Gemfile-rails-5.0.x
+  - Gemfile-rails-5.1.x
+  - Gemfile-rails-5.2.x
 env:
-  - RAILS_VERSION=3.2.22.2
-  - RAILS_VERSION=4.0.13
+  global:
+    BUNDLER_VERSION=1.17.3
+notifications:
+  email: false
