@@ -5,7 +5,7 @@ end
 
 module Comply
   class ValidationsController < Comply::ApplicationController
-    before_filter :require_model, :require_fields
+    before_action :require_model, :require_fields
 
     if ActiveModel.const_defined?(:ForbiddenAttributesProtection)
       include ActiveModel::ForbiddenAttributesProtection
