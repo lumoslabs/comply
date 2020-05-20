@@ -1,6 +1,6 @@
 # 2.0.0
 * Dropped support for rails3 (use 1.9.0 for older rails versions).
-* Handled rails5+ depracations.
+* Handled rails5+ deprecations.
 
 # 1.9.0 (formerly 1.8.1)
 * Support both POST and GET at the `/validations` endpoint
