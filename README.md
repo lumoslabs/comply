@@ -13,11 +13,6 @@ Include Comply in your gemfile:
 ```ruby
 gem 'comply'
 ```
-If you are using Rails 3, you need to include `strong_parameters`
-```ruby
-gem 'comply'
-gem 'strong_parameters'
-```
 Mount the engine in your `routes.rb`:
 ```ruby
 mount Comply::Engine => '/comply'

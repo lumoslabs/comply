@@ -1,5 +1,20 @@
 require 'spec_helper'
 
+if RUBY_VERSION>='2.6.0'
+  if Rails.version < '5'
+    class ActionController::TestResponse < ActionDispatch::TestResponse
+      def recycle!
+        # hack to avoid MonitorMixin double-initialize error:
+        @mon_mutex_owner_object_id = nil
+        @mon_mutex = nil
+        initialize
+      end
+    end
+  else
+    puts "Monkeypatch for ActionController::TestResponse no longer needed"
+  end
+end
+
 describe Comply::ValidationsController, type: :controller do
   routes { Comply::Engine.routes }
 
@@ -22,7 +37,7 @@ describe Comply::ValidationsController, type: :controller do
       }
     end
 
-    shared_examples_for :comply_validations_controller do
+    shared_examples_for 'comply_validations_controller' do
       context 'when model is valid' do
         it 'returns success' do
           subject
@@ -127,9 +142,9 @@ describe Comply::ValidationsController, type: :controller do
     end
 
     context 'POST request to validations endpoint' do
-      subject { post :show, params }
+      subject { post :show, params: params }
 
-      it_behaves_like :comply_validations_controller
+      it_behaves_like 'comply_validations_controller'
 
       context 'POST method is supported' do
         it 'does not emit a deprecation notice' do
@@ -140,9 +155,9 @@ describe Comply::ValidationsController, type: :controller do
     end
 
     context 'GET request to validations endpoint' do
-      subject { get :show, params }
+      subject { get :show, params: params }
 
-      it_behaves_like :comply_validations_controller
+      it_behaves_like 'comply_validations_controller'
 
       context 'GET method is deprecated' do
         it 'emits a deprecation notice' do
